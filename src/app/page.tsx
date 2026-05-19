@@ -238,16 +238,23 @@ function Hero() {
   );
 }
 
-const PARTNERS = [
-  "Rolling Stone",
-  "Billboard",
-  "Topfan",
-  "Notorious Productions",
-  "Meteor 17",
-  "Warner Music",
-  "CBS",
-  "Fogo.TV",
-  "Arthouse Media Group",
+type MarqueePartner = {
+  name: string;
+  src?: string;
+  width?: number;
+  height?: number;
+};
+
+const PARTNERS: MarqueePartner[] = [
+  { name: "Rolling Stone", src: "/partners/rolling-stone.svg", width: 3000, height: 671 },
+  { name: "Billboard", src: "/partners/billboard.png", width: 3840, height: 810 },
+  { name: "Topfan", src: "/partners/topfan.webp", width: 1000, height: 1000 },
+  { name: "Notorious Productions" },
+  { name: "Meteor 17", src: "/partners/meteor-17.webp", width: 200, height: 242 },
+  { name: "Warner Music", src: "/partners/warner-music.png", width: 1000, height: 434 },
+  { name: "CBS", src: "/partners/cbs.png", width: 960, height: 278 },
+  { name: "Fogo.TV", src: "/partners/fogo.png", width: 596, height: 380 },
+  { name: "Arthouse Media Group", src: "/partners/arthouse.png", width: 215, height: 144 },
 ];
 
 function PartnerMarquee() {
@@ -294,9 +301,22 @@ function PartnerMarquee() {
 
       <div className="marquee-shell" aria-label="H30 partner network">
         <div className="marquee-track">
-          {loop.map((name, i) => (
-            <span key={`${name}-${i}`} className="marquee-item">
-              <span className="marquee-item__label">{name}</span>
+          {loop.map((partner, i) => (
+            <span key={`${partner.name}-${i}`} className="marquee-item">
+              {partner.src && partner.width && partner.height ? (
+                <span className="marquee-item__logo">
+                  <Image
+                    src={partner.src}
+                    alt={partner.name}
+                    width={partner.width}
+                    height={partner.height}
+                    className="marquee-item__logo-img"
+                    sizes="200px"
+                  />
+                </span>
+              ) : (
+                <span className="marquee-item__label">{partner.name}</span>
+              )}
               <span className="marquee-sep" aria-hidden="true">
                 &#9679;
               </span>

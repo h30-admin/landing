@@ -44,10 +44,15 @@ function AmbientGradients() {
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
 
-  // spotlight drifts diagonally across the viewport as you scroll
-  const spotTop = useTransform(scrollY, [0, 4000], ["18vh", "85vh"]);
-  const spotLeft = useTransform(scrollY, [0, 4000], ["48vw", "12vw"]);
-  const spotScale = useTransform(scrollY, [0, 2000, 4000], [1, 1.25, 1]);
+  // spotlight drifts diagonally across the page as you scroll
+  // Range extended to ~10k px so it stays in motion through every section
+  const spotTop = useTransform(scrollY, [0, 10000], ["18vh", "92vh"]);
+  const spotLeft = useTransform(scrollY, [0, 10000], ["48vw", "10vw"]);
+  const spotScale = useTransform(
+    scrollY,
+    [0, 3000, 6000, 10000],
+    [1, 1.25, 1.15, 1.3]
+  );
 
   return (
     <div className="ambient-stage" aria-hidden="true">
@@ -56,6 +61,13 @@ function AmbientGradients() {
       <div className="ambient-glow ambient-glow--fire-spark" />
       <div className="ambient-glow ambient-glow--ember-low" />
       <div className="ambient-glow ambient-glow--violet-deep" />
+      <div className="ambient-glow ambient-glow--navy-shift" />
+      <div className="ambient-glow ambient-glow--ember-section" />
+      <div className="ambient-glow ambient-glow--violet-engine" />
+      <div className="ambient-glow ambient-glow--fire-team" />
+      <div className="ambient-glow ambient-glow--navy-partners" />
+      <div className="ambient-glow ambient-glow--ember-cta" />
+      <div className="ambient-glow ambient-glow--violet-footer" />
       <motion.div
         className="ambient-spotlight"
         style={

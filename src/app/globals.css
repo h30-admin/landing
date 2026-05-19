@@ -96,6 +96,70 @@
   animation: drift-fire 13s ease-in-out infinite alternate;
 }
 
+/* Deep page gradients .. continue the ambient bloom through the team / partnerships / cta / footer */
+.ambient-glow--navy-shift {
+  top: 270vh;
+  right: 4vw;
+  width: 62vw;
+  height: 62vw;
+  background: radial-gradient(circle, rgba(60, 110, 200, 0.85) 0%, rgba(31, 58, 110, 0) 60%);
+  animation: drift-navy 22s ease-in-out infinite alternate;
+}
+
+.ambient-glow--ember-section {
+  top: 350vh;
+  left: 6vw;
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(circle, rgba(220, 50, 65, 0.85) 0%, rgba(139, 26, 31, 0) 60%);
+  animation: drift-ember 24s ease-in-out infinite alternate;
+}
+
+.ambient-glow--violet-engine {
+  top: 440vh;
+  right: -8vw;
+  width: 72vw;
+  height: 72vw;
+  background: radial-gradient(circle, rgba(140, 70, 215, 0.95) 0%, rgba(91, 46, 140, 0) 60%);
+  animation: drift-violet-deep 20s ease-in-out infinite alternate;
+}
+
+.ambient-glow--fire-team {
+  top: 530vh;
+  left: 28vw;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, rgba(255, 80, 110, 0.75) 0%, rgba(240, 59, 92, 0) 65%);
+  animation: drift-fire 17s ease-in-out infinite alternate;
+}
+
+.ambient-glow--navy-partners {
+  top: 620vh;
+  right: 6vw;
+  width: 68vw;
+  height: 68vw;
+  background: radial-gradient(circle, rgba(60, 110, 200, 0.8) 0%, rgba(31, 58, 110, 0) 60%);
+  animation: drift-navy 21s ease-in-out infinite alternate;
+}
+
+.ambient-glow--ember-cta {
+  top: 720vh;
+  left: 18vw;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(190, 38, 50, 0.85) 0%, rgba(139, 26, 31, 0) 60%);
+  animation: drift-ember 25s ease-in-out infinite alternate;
+}
+
+.ambient-glow--violet-footer {
+  top: 820vh;
+  right: 12vw;
+  width: 58vw;
+  height: 58vw;
+  background: radial-gradient(circle, rgba(140, 70, 215, 0.7) 0%, rgba(91, 46, 140, 0) 60%);
+  animation: drift-violet 23s ease-in-out infinite alternate;
+}
+
 /* Scroll-coupled spotlight .. position driven by motion's useScroll */
 .ambient-spotlight {
   position: absolute;

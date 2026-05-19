@@ -911,6 +911,9 @@ const TEAM_MEMBERS = [
     credentials: "NHL · Arizona Coyotes · Hedge fund",
     bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment.",
   },
+];
+
+const PLATFORM_PARTNERS = [
   {
     initials: "JK",
     name: "Jeffrey Kohn",
@@ -954,6 +957,38 @@ function TeamSection() {
             <TeamCard key={member.name} member={member} index={i} reduce={reduce} />
           ))}
         </div>
+
+        <motion.div
+          className="mt-20 md:mt-24 pt-12 border-t border-cream/15"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.85, ease: EASE }}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 items-start">
+            <div className="lg:col-span-1">
+              <p className="font-mono text-[10px] tracking-[0.28em] uppercase text-fire mb-4">
+                In partnership with
+              </p>
+              <h3 className="font-display font-extrabold text-[clamp(1.5rem,2.5vw,2.25rem)] leading-[1.05] text-cream mb-3">
+                Platform partner.
+              </h3>
+              <p className="text-sm text-cream/70 leading-relaxed max-w-sm">
+                Topfan is the white-labeled engine underneath every H30 creator.
+                Jeff built it.
+              </p>
+            </div>
+
+            {PLATFORM_PARTNERS.map((member, i) => (
+              <TeamCard
+                key={member.name}
+                member={member}
+                index={i}
+                reduce={reduce}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf /tmp/h30-scaffold)",
+      "Bash(npx --yes create-next-app@latest /tmp/h30-scaffold --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(curl -s http://localhost:3001)",
+      "Read(//private/tmp/**)",
+      "Bash(curl -s -o /tmp/h30-render.html -w \"HTTP %{http_code}\\\\n\" http://localhost:3001)",
+      "Bash(cp \"/Users/josh/Downloads/Untitled design \\(38\\).png\" /Users/josh/Projects/h30-landing/public/topfan/sienna-brooks.png)",
+      "Bash(cp \"/Users/josh/Downloads/Untitled design \\(39\\).png\" /Users/josh/Projects/h30-landing/public/topfan/triple-spur-band.png)",
+      "Bash(cp \"/Users/josh/Downloads/Untitled design \\(40\\).png\" /Users/josh/Projects/h30-landing/public/topfan/bonded-wealth.png)",
+      "Bash(cp \"/Users/josh/Downloads/Untitled design \\(41\\).png\" /Users/josh/Projects/h30-landing/public/topfan/sienna-mobile.png)"
+    ]
+  }
+}

@@ -17,9 +17,24 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://h30.live"),
   title: "H30 .. Acquiring the Future of Media IP",
   description:
     "Your fans. Your platform. Your revenue. H30 builds, runs, and grows direct-to-fan ecosystems for the world's top creators.",
+  openGraph: {
+    title: "H30 .. Acquiring the Future of Media IP",
+    description:
+      "Your fans. Your platform. Your revenue. H30 builds the direct-to-fan platforms creators should have owned all along.",
+    url: "https://h30.live",
+    siteName: "H30 Media Group",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "H30 .. Acquiring the Future of Media IP",
+    description:
+      "Your fans. Your platform. Your revenue. H30 builds the direct-to-fan platforms creators should have owned all along.",
+  },
 };
 
 export default function RootLayout({

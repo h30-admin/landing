@@ -911,6 +911,13 @@ const TEAM_MEMBERS = [
     credentials: "NHL · Arizona Coyotes · Hedge fund",
     bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment.",
   },
+  {
+    initials: "JK",
+    name: "Jeffrey Kohn",
+    role: "Founder, Topfan",
+    credentials: "Topfan · NASA · Oracle · Sun Microsystems · RH Donnelley",
+    bio: "Founded Topfan in 2015 after two decades at NASA Mission Control, Sun Microsystems, and Oracle as a Distinguished Enterprise Architect. Built the Direct-to-Fan and Fan Relationship Management technology now powering H30's creators. Puts first-party fan data back in talent's hands.",
+  },
 ];
 
 function TeamSection() {
@@ -937,7 +944,7 @@ function TeamSection() {
             <span className="text-fire">of giants.</span>
           </h2>
           <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
-            Five people who built the platforms creators are now leaving.
+            The people who built the platforms creators are now leaving.
             Now they&apos;re building the ones that replace them.
           </p>
         </motion.div>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Welcome to H30</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" type="text/css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap');
+
+    body, table, td, a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    table, td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    img {
+      -ms-interpolation-mode: bicubic;
+      border: 0;
+      outline: none;
+      text-decoration: none;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #08081a;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+    a {
+      color: #f03b5c;
+    }
+
+    @media only screen and (max-width: 620px) {
+      .email-wrapper { width: 100% !important; }
+      .hero-headline { font-size: 42px !important; line-height: 1.0 !important; }
+      .section-pad { padding: 32px 24px !important; }
+      .q-option { display: block !important; margin: 6px 0 !important; }
+      .cta-btn { width: 100% !important; display: block !important; text-align: center !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#08081a;">
+
+<!-- Outer wrapper -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#08081a;">
+  <tr>
+    <td align="center" style="padding:24px 12px 48px;">
+
+      <!-- Email container -->
+      <table class="email-wrapper" role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+        <!-- ============================================================ -->
+        <!-- HEADER / HERO -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-color:#08081a;background-image:radial-gradient(circle at 15% 20%, rgba(140,70,215,0.65) 0%, rgba(91,46,140,0) 55%), radial-gradient(circle at 85% 80%, rgba(240,59,92,0.5) 0%, rgba(139,26,31,0) 55%), radial-gradient(circle at 75% 15%, rgba(60,110,200,0.35) 0%, rgba(31,58,110,0) 50%);padding:52px 48px 48px;" class="section-pad">
+
+            <!-- Logo row -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="vertical-align:baseline;">
+                        <span style="font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:36px;font-weight:800;color:#f4f1e6;letter-spacing:-0.04em;line-height:1;">H30</span>
+                      </td>
+                      <td style="vertical-align:baseline;padding-left:14px;">
+                        <span style="font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:4px;text-transform:uppercase;">Media Group</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td align="right" style="vertical-align:middle;">
+                  <span style="font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:700;color:#f03b5c;letter-spacing:4px;text-transform:uppercase;">h30.live</span>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Divider -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:28px 0 32px;">
+                  <div style="height:1px;background:rgba(244,241,230,0.12);"></div>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Eyebrow -->
+            <p style="margin:0 0 16px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:500;color:#948ba8;letter-spacing:4px;text-transform:uppercase;">You built the audience.</p>
+
+            <!-- Hero headline -->
+            <h1 class="hero-headline" style="margin:0 0 8px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:58px;font-weight:800;line-height:1.0;letter-spacing:-0.035em;color:#f4f1e6;">
+              Your fans.<br />
+              Your platform.<br />
+              <span style="color:#f03b5c;">Your revenue.</span>
+            </h1>
+
+          </td>
+        </tr>
+
+        <!-- ============================================================ -->
+        <!-- WELCOME BODY -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-color:#0d0d22;padding:44px 48px;" class="section-pad">
+
+            <p style="margin:0 0 6px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;color:#f4f1e6;letter-spacing:-0.01em;">
+              Hey {{ first_name|default:'there' }},
+            </p>
+
+            <p style="margin:0 0 20px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              You're in. Thanks for connecting with H30.
+            </p>
+
+            <p style="margin:0 0 20px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              Legacy platforms are data extraction schemes. You do 100% of the work for a fraction of the value. One algorithm update erases years of growth. The rent gets steeper every quarter.
+            </p>
+
+            <p style="margin:0 0 20px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              H30 builds, runs, and grows direct-to-fan platforms for creators, athletes, and entertainers who are done renting their audience from someone else. White-labeled. Fully owned. Built for your brand.
+            </p>
+
+            <!-- Pull quote -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0;">
+              <tr>
+                <td style="border-left:3px solid #f03b5c;padding:4px 0 4px 20px;">
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:17px;font-weight:700;color:#f4f1e6;line-height:1.5;letter-spacing:-0.01em;">
+                    "Talent owns the data, the destiny, the IP, and the revenue."
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              Our team will be reaching out shortly to book your onboarding call. In the meantime, we have a few quick questions to help us prepare.
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- ============================================================ -->
+        <!-- QUESTIONNAIRE -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-color:#08081a;padding:44px 48px;" class="section-pad">
+
+            <!-- Section label -->
+            <p style="margin:0 0 6px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:700;color:#f03b5c;letter-spacing:4px;text-transform:uppercase;">Before your call</p>
+            <h2 style="margin:0 0 32px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:26px;font-weight:800;color:#f4f1e6;letter-spacing:-0.02em;line-height:1.1;">
+              A few quick questions.
+            </h2>
+
+            <!-- Q1 -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+              <tr>
+                <td style="border-top:1px solid rgba(244,241,230,0.12);padding-top:20px;">
+                  <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:3px;text-transform:uppercase;">01</p>
+                  <p style="margin:0 0 12px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">What's your primary creative focus?</p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;color:rgba(244,241,230,0.55);">
+                    Music &nbsp;·&nbsp; Sports &nbsp;·&nbsp; Entertainment &nbsp;·&nbsp; Podcast &nbsp;·&nbsp; Wellness / Fitness &nbsp;·&nbsp; Brand &nbsp;·&nbsp; Other
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Q2 -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+              <tr>
+                <td style="border-top:1px solid rgba(244,241,230,0.12);padding-top:20px;">
+                  <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:3px;text-transform:uppercase;">02</p>
+                  <p style="margin:0 0 12px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">How large is your current audience across all platforms?</p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;color:rgba(244,241,230,0.55);">
+                    Under 10K &nbsp;·&nbsp; 10K – 100K &nbsp;·&nbsp; 100K – 500K &nbsp;·&nbsp; 500K – 1M &nbsp;·&nbsp; 1M+
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Q3 -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+              <tr>
+                <td style="border-top:1px solid rgba(244,241,230,0.12);padding-top:20px;">
+                  <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:3px;text-transform:uppercase;">03</p>
+                  <p style="margin:0 0 12px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">Where does most of your audience live right now?</p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;color:rgba(244,241,230,0.55);">
+                    Instagram &nbsp;·&nbsp; YouTube &nbsp;·&nbsp; TikTok &nbsp;·&nbsp; Spotify / Podcast &nbsp;·&nbsp; X / Twitter &nbsp;·&nbsp; Multiple &nbsp;·&nbsp; Other
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Q4 -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+              <tr>
+                <td style="border-top:1px solid rgba(244,241,230,0.12);padding-top:20px;">
+                  <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:3px;text-transform:uppercase;">04</p>
+                  <p style="margin:0 0 12px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">What's your biggest pain point with the current setup?</p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;color:rgba(244,241,230,0.55);">
+                    Revenue share &nbsp;·&nbsp; Algorithm dependence &nbsp;·&nbsp; No data ownership &nbsp;·&nbsp; Audience growth &nbsp;·&nbsp; All of the above
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Q5 -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;">
+              <tr>
+                <td style="border-top:1px solid rgba(244,241,230,0.12);padding-top:20px;">
+                  <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:500;color:#948ba8;letter-spacing:3px;text-transform:uppercase;">05</p>
+                  <p style="margin:0 0 12px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">Are you currently selling anything directly to your fans?</p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;color:rgba(244,241,230,0.55);">
+                    Yes, actively &nbsp;·&nbsp; Tried but it's not working &nbsp;·&nbsp; Not yet, but I want to &nbsp;·&nbsp; No
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Reply instruction -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+              <tr>
+                <td style="background-color:#0d0d22;border:1px solid rgba(244,241,230,0.1);padding:20px 24px;">
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:14px;font-weight:500;color:rgba(244,241,230,0.7);line-height:1.65;">
+                    <span style="color:#f03b5c;font-weight:700;">Just hit reply</span> and drop your answers. No form, no funnel. Our team reads every one.
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- ============================================================ -->
+        <!-- ONBOARDING NOTE + CTA -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-image:radial-gradient(circle at 80% 50%, rgba(140,70,215,0.45) 0%, rgba(91,46,140,0) 55%), radial-gradient(circle at 20% 80%, rgba(240,59,92,0.35) 0%, rgba(139,26,31,0) 55%);background-color:#08081a;padding:44px 48px;" class="section-pad">
+
+            <p style="margin:0 0 6px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:10px;font-weight:700;color:#f03b5c;letter-spacing:4px;text-transform:uppercase;">What happens next</p>
+
+            <h2 style="margin:0 0 16px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:26px;font-weight:800;color:#f4f1e6;letter-spacing:-0.02em;line-height:1.15;">
+              Your onboarding call<br />is coming.
+            </h2>
+
+            <p style="margin:0 0 28px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              One of our team members will reach out within 48 hours to schedule your discovery call. We'll walk you through what the platform looks like for your specific audience, how the migration works, and what the monetization architecture looks like for your brand.
+            </p>
+
+            <p style="margin:0 0 32px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">
+              If you'd rather move faster, book directly below.
+            </p>
+
+            <!-- CTA Button -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#f03b5c;">
+                  <a href="https://h30.live/#cta" class="cta-btn" style="display:inline-block;padding:16px 36px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:11px;font-weight:700;color:#f4f1e6;text-decoration:none;letter-spacing:0.18em;text-transform:uppercase;">
+                    Book a Discovery Call &rarr;
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- ============================================================ -->
+        <!-- SIGN-OFF -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-color:#0d0d22;padding:36px 48px;" class="section-pad">
+            <p style="margin:0 0 4px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:400;color:rgba(244,241,230,0.75);line-height:1.7;">Talk soon,</p>
+            <p style="margin:0 0 20px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:15px;font-weight:700;color:#f4f1e6;">Jesse Dylan &amp; the H30 team</p>
+            <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:12px;color:#948ba8;font-style:italic;line-height:1.6;">
+              Chairman, H30 Media Group
+            </p>
+          </td>
+        </tr>
+
+        <!-- ============================================================ -->
+        <!-- FOOTER -->
+        <!-- ============================================================ -->
+        <tr>
+          <td style="background-color:#03030c;padding:28px 48px;border-top:1px solid rgba(244,241,230,0.08);" class="section-pad">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <p style="margin:0 0 8px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:13px;font-weight:800;color:#f4f1e6;letter-spacing:-0.02em;">H30 Media Group</p>
+                  <p style="margin:0 0 16px;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:11px;color:#948ba8;line-height:1.6;">
+                    HANGR3 Entertainment Corp. &nbsp;·&nbsp; h30.live<br />
+                    Acquiring the future of media IP.
+                  </p>
+                  <p style="margin:0;font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;font-size:11px;color:rgba(148,139,168,0.6);line-height:1.6;">
+                    You're receiving this because you signed up at h30.live.<br />
+                    <a href="{{ unsubscribe_url }}" style="color:rgba(148,139,168,0.6);text-decoration:underline;">Unsubscribe</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+      <!-- /Email container -->
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

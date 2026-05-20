@@ -246,9 +246,10 @@ function Hero() {
             {...fadeUp(0.8)}
           >
             <p className="text-lg md:text-xl text-cream/80 leading-relaxed max-w-xl">
-              H30 builds the direct-to-fan platforms creators should
-              have owned all along. We run them. We grow them. You
-              keep your audience.
+              H30 has partnered with TopFan to create the worlds most
+              powerful Direct to Fan Monetization creators should have
+              owned all along. We run them. We grow them. You keep
+              your audience.
             </p>
 
             <a
@@ -655,6 +656,7 @@ const CREATOR_CARDS = [
     name: "Denver Broncos",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
+    bright: true,
   },
   {
     logo: "/partners/lumineers.png",
@@ -671,6 +673,7 @@ const CREATOR_CARDS = [
     name: "NFL Players Assoc.",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
+    bright: true,
   },
   {
     logo: "/partners/mgm.png",
@@ -754,7 +757,7 @@ function SolutionSection() {
                   alt={card.name}
                   width={card.logoW}
                   height={card.logoH}
-                  className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
+                  className={`w-full h-auto max-h-16 object-contain filter brightness-0 invert ${card.bright ? "opacity-100" : "opacity-80"}`}
                   sizes="180px"
                 />
               </div>

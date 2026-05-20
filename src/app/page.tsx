@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   motion,
+  AnimatePresence,
   useReducedMotion,
   useScroll,
   useTransform,
@@ -17,7 +18,6 @@ const NAV_SECTIONS = [
   { num: "03", label: "Platform", href: "#platform" },
   { num: "04", label: "Engine", href: "#engine" },
   { num: "05", label: "Team", href: "#team" },
-  { num: "06", label: "Partners", href: "#partners" },
 ];
 
 export default function Home() {
@@ -33,7 +33,6 @@ export default function Home() {
       <SolutionSection />
       <EngineSection />
       <TeamSection />
-      <PartnershipsSection />
       <FinalCTA />
       <SiteFooter />
     </main>
@@ -82,46 +81,115 @@ function AmbientGradients() {
 }
 
 function SiteNav() {
+  const [open, setOpen] = useState(false);
+  const reduce = useReducedMotion();
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-cream/5 backdrop-blur-md bg-ground/60">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between py-4 md:py-5">
-        <a href="#top" className="flex items-center">
-          <Image
-            src="/brand/h30-logo-icon.png"
-            alt="H30 Media Group"
-            width={158}
-            height={44}
-            priority
-            className="block"
-          />
-        </a>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-cream/5 backdrop-blur-md bg-ground/60">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between py-4 md:py-5">
+          <a href="#top" className="flex items-center" onClick={() => setOpen(false)}>
+            <Image
+              src="/brand/h30-logo-icon.png"
+              alt="H30 Media Group"
+              width={158}
+              height={44}
+              priority
+              className="block"
+            />
+          </a>
 
-        <ul className="hidden md:flex items-center gap-7">
-          {NAV_SECTIONS.map((s) => (
-            <li key={s.num}>
-              <a
-                href={s.href}
-                className="group flex items-baseline gap-2 text-cream/85 hover:text-cream transition-colors"
-              >
-                <span className="font-mono text-[10px] text-mute group-hover:text-fire transition-colors">
-                  {s.num}
-                </span>
-                <span className="text-sm font-medium tracking-wide">
-                  {s.label}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden md:flex items-center gap-7">
+            {NAV_SECTIONS.map((s) => (
+              <li key={s.num}>
+                <a
+                  href={s.href}
+                  className="group flex items-baseline gap-2 text-cream/85 hover:text-cream transition-colors"
+                >
+                  <span className="font-mono text-[10px] text-mute group-hover:text-fire transition-colors">
+                    {s.num}
+                  </span>
+                  <span className="text-sm font-medium tracking-wide">
+                    {s.label}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        <a
-          href="#cta"
-          className="text-[11px] font-semibold tracking-[0.18em] uppercase border border-cream/40 text-cream px-4 py-2 hover:bg-cream hover:text-ground transition-colors"
-        >
-          Book a call
-        </a>
-      </div>
-    </nav>
+          <div className="flex items-center gap-4">
+            <a
+              href="#cta"
+              className="hidden md:inline-flex text-[11px] font-semibold tracking-[0.18em] uppercase border border-cream/40 text-cream px-4 py-2 hover:bg-cream hover:text-ground transition-colors"
+            >
+              Book a call
+            </a>
+
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] group"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              <span
+                className={`block w-6 h-[1.5px] bg-cream transition-all duration-300 origin-center ${open ? "rotate-45 translate-y-[7.5px]" : ""}`}
+              />
+              <span
+                className={`block w-6 h-[1.5px] bg-cream transition-all duration-300 ${open ? "opacity-0 scale-x-0" : ""}`}
+              />
+              <span
+                className={`block w-6 h-[1.5px] bg-cream transition-all duration-300 origin-center ${open ? "-rotate-45 -translate-y-[7.5px]" : ""}`}
+              />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            className="fixed inset-0 z-40 bg-ground/97 backdrop-blur-lg flex flex-col px-8 pt-28 pb-12 md:hidden"
+            initial={reduce ? { opacity: 1 } : { opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <ul className="flex flex-col gap-8 flex-1">
+              {NAV_SECTIONS.map((s, i) => (
+                <motion.li
+                  key={s.num}
+                  initial={reduce ? false : { opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
+                >
+                  <a
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                    className="group flex items-baseline gap-4"
+                  >
+                    <span className="font-mono text-[11px] text-fire tracking-[0.2em]">
+                      {s.num}
+                    </span>
+                    <span className="font-display font-extrabold text-[clamp(2rem,8vw,3.5rem)] text-cream leading-none tracking-[-0.02em] group-hover:text-fire transition-colors">
+                      {s.label}
+                    </span>
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+
+            <a
+              href="#cta"
+              onClick={() => setOpen(false)}
+              className="mt-auto w-full text-center text-[11px] font-semibold tracking-[0.18em] uppercase border border-cream/40 text-cream px-4 py-4 hover:bg-cream hover:text-ground transition-colors"
+            >
+              Book a call
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -258,15 +326,14 @@ type MarqueePartner = {
 };
 
 const PARTNERS: MarqueePartner[] = [
-  { name: "Rolling Stone", src: "/partners/rolling-stone.svg", width: 3000, height: 671 },
-  { name: "Billboard", src: "/partners/billboard.png", width: 3840, height: 810 },
-  { name: "Topfan", src: "/partners/topfan.webp", width: 1000, height: 1000 },
-  { name: "Notorious Productions" },
-  { name: "Meteor 17", src: "/partners/meteor-17.webp", width: 200, height: 242 },
-  { name: "Warner Music", src: "/partners/warner-music.png", width: 1000, height: 434 },
-  { name: "CBS", src: "/partners/cbs.png", width: 960, height: 278 },
-  { name: "Fogo.TV", src: "/partners/fogo.png", width: 596, height: 380 },
-  { name: "Arthouse Media Group", src: "/partners/arthouse.png", width: 215, height: 144 },
+  { name: "Denver Broncos", src: "/partners/denver-broncos.png", width: 1280, height: 751 },
+  { name: "Maroon 5", src: "/partners/maroon-5.png", width: 886, height: 169 },
+  { name: "FOX", src: "/partners/fox.png", width: 1441, height: 600 },
+  { name: "The Lumineers", src: "/partners/lumineers.png", width: 1299, height: 600 },
+  { name: "WB", src: "/partners/wb.png", width: 569, height: 600 },
+  { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676 },
+  { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
+  { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
 ];
 
 function PartnerMarquee() {
@@ -287,31 +354,18 @@ function PartnerMarquee() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.85, ease }}
         >
-          <div className="md:col-span-5">
-            <p className="text-[10px] tracking-[0.28em] uppercase font-medium text-mute mb-6">
-              The footprint
-            </p>
-            <p className="font-display font-extrabold text-[clamp(3.5rem,10vw,9rem)] leading-[0.88] tracking-[-0.035em] text-cream">
-              100M<span className="text-fire">+</span>
-            </p>
-          </div>
-          <div className="md:col-span-7">
-            <p className="text-lg md:text-xl text-cream/80 leading-relaxed max-w-xl">
-              Monthly fans reached through{" "}
-              <span className="text-cream font-medium">Rolling Stone</span>
-              {" "}and{" "}
-              <span className="text-cream font-medium">Billboard</span>
-              {" "}alone. H30&apos;s partner network compounds that number
-              across sports, music, and entertainment.
-            </p>
-            <p className="mt-6 text-[11px] tracking-[0.28em] uppercase font-medium text-mute">
-              Hover the strip below to pause it
+          <div className="md:col-span-12">
+            <p className="font-display font-extrabold text-[clamp(2rem,5vw,4rem)] leading-[1.05] tracking-[-0.03em] text-cream max-w-4xl">
+              The{" "}
+              <span className="text-fire">#1</span>{" "}
+              Direct to Fan Platform..{" "}
+              Trusted by Leaders in Sports &amp; Entertainment
             </p>
           </div>
         </motion.div>
       </div>
 
-      <div className="marquee-shell" aria-label="H30 partner network">
+      <div className="marquee-shell" aria-label="Topfan clients">
         <div className="marquee-track">
           {loop.map((partner, i) => (
             <span key={`${partner.name}-${i}`} className="marquee-item">
@@ -422,23 +476,6 @@ function SeismicShift() {
   );
 }
 
-type ProblemStatProps = {
-  number: string;
-  label: string;
-  sub?: string;
-};
-
-function ProblemStat({ number, label, sub }: ProblemStatProps) {
-  return (
-    <div>
-      <p className="font-display font-extrabold text-[clamp(2rem,4vw,3.5rem)] text-cream leading-none tracking-[-0.025em] mb-3">
-        {number}
-      </p>
-      <p className="text-sm font-medium text-cream/85">{label}</p>
-      {sub && <p className="text-xs text-mute mt-1">{sub}</p>}
-    </div>
-  );
-}
 
 function ProblemSection() {
   const reduce = useReducedMotion();
@@ -461,7 +498,8 @@ function ProblemSection() {
             The problem
           </p>
           <h2 className="font-display font-extrabold text-[clamp(2.5rem,7vw,7rem)] leading-[0.92] tracking-[-0.025em] text-cream max-w-5xl">
-            Platform <span className="text-fire">feudalism.</span>
+            You built it.{" "}
+            <span className="text-fire">They own it.</span>
           </h2>
         </motion.div>
 
@@ -477,36 +515,11 @@ function ProblemSection() {
         </motion.p>
 
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-14 md:mb-20 pt-12 border-t border-cream/15"
+          className="grid md:grid-cols-12 gap-10 md:gap-14 mb-14 md:mb-20 pt-12 border-t border-cream/15"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.85, ease: EASE, delay: 0.15 }}
-        >
-          <ProblemStat number="1.0M" label="Followers built" />
-          <ProblemStat
-            number="3.5%"
-            label="Organic reach"
-            sub="35K views per post"
-          />
-          <ProblemStat
-            number="23%"
-            label="Feed is ads"
-            sub="Up from 11% in 2020"
-          />
-          <ProblemStat
-            number="1 : 3"
-            label="Ad-to-post ratio"
-            sub="On algorithmic feeds"
-          />
-        </motion.div>
-
-        <motion.div
-          className="grid md:grid-cols-12 gap-10 md:gap-14 mb-14 md:mb-20"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.85, ease: EASE, delay: 0.2 }}
         >
           <p className="md:col-span-6 text-base md:text-lg text-cream/80 leading-relaxed">
             You don&apos;t own the data. You don&apos;t own the community.
@@ -527,8 +540,8 @@ function ProblemSection() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.85, ease: EASE, delay: 0.25 }}
         >
-          This is platform feudalism in numbers.{" "}
-          <span className="text-fire">H30 builds the off-ramp.</span>
+          H30&apos;s solution puts the power back in the creator&apos;s hands..{" "}
+          <span className="text-fire">and equips them with the team to build on it.</span>
         </motion.p>
       </div>
     </section>
@@ -586,8 +599,8 @@ function EmailCapture() {
               <span className="text-mute">Get the read instead.</span>
             </h2>
             <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-xl">
-              Once a quarter, H30 sends the brief on platform feudalism,
-              consolidation moves, and the creators making the jump. No
+              Once a quarter, H30 sends the brief on creator ownership,
+              consolidation moves, and the talent making the jump. No
               spam, no funnel pressure.
             </p>
           </div>
@@ -641,46 +654,102 @@ function EmailCapture() {
   );
 }
 
-const CREATOR_FRAMES = [
+const CREATOR_CARDS = [
   {
-    src: "/topfan/triple-spur-band.png",
-    name: "Triple Spur Band",
-    industry: "Country music",
-    location: "Nashville, TN",
-    features:
-      "Subscriptions. Merchandise. Live shows. Leaderboards. VIP offers. Paid DMs. Newsletters. All branded as theirs, all owned by them.",
-  },
-  {
-    src: "/topfan/bonded-wealth.png",
-    name: "Bonded Wealth",
-    industry: "Finance podcast",
-    location: "Indianapolis, IN",
-    features:
-      "Same engine. White-labeled in navy and gold for a husband-wife wealth advisory show. Podcasts, video series, e-books, sponsored ads they control.",
-  },
-  {
-    src: "/topfan/sienna-brooks.png",
+    type: "image",
+    src: "/topfan/sienna-mobile.png",
+    width: 1080,
+    height: 1920,
     name: "Sienna Brooks",
-    industry: "Wellness coach",
-    location: "Denver, CO",
-    features:
-      "Same engine. Coral and rose for a personal trainer's coaching practice. Newsletter, podcast, premium plans, store, follow-back socials.",
+    tag: "Wellness",
+    gradient: "",
+  },
+  {
+    type: "logo",
+    logo: "/partners/maroon-5.png",
+    logoW: 886,
+    logoH: 169,
+    name: "Maroon 5",
+    tag: "Music",
+    gradient: "from-violet/60 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/denver-broncos.png",
+    logoW: 1280,
+    logoH: 751,
+    name: "Denver Broncos",
+    tag: "Sports",
+    gradient: "from-navy/70 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/lumineers.png",
+    logoW: 1299,
+    logoH: 600,
+    name: "The Lumineers",
+    tag: "Music",
+    gradient: "from-ember/50 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/nfl-pa.png",
+    logoW: 2000,
+    logoH: 676,
+    name: "NFL Players Assoc.",
+    tag: "Sports",
+    gradient: "from-navy/70 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/mgm.png",
+    logoW: 3840,
+    logoH: 2160,
+    name: "MGM",
+    tag: "Entertainment",
+    gradient: "from-violet/50 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/wb.png",
+    logoW: 569,
+    logoH: 600,
+    name: "Warner Bros.",
+    tag: "Entertainment",
+    gradient: "from-ember/50 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/9er.png",
+    logoW: 610,
+    logoH: 600,
+    name: "Niner Entertainment",
+    tag: "Sports",
+    gradient: "from-navy/60 via-ground to-deeper",
+  },
+  {
+    type: "logo",
+    logo: "/partners/fox.png",
+    logoW: 1441,
+    logoH: 600,
+    name: "FOX",
+    tag: "Media",
+    gradient: "from-ember/50 via-ground to-deeper",
   },
 ];
 
-type CreatorFrame = (typeof CREATOR_FRAMES)[number];
-
 function SolutionSection() {
   const reduce = useReducedMotion();
+  const loop = [...CREATOR_CARDS, ...CREATOR_CARDS];
 
   return (
     <section
       id="platform"
-      className="relative border-t border-cream/10 px-6 md:px-12 py-24 md:py-32"
+      className="relative border-t border-cream/10 py-24 md:py-32"
     >
-      <div className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12">
         <motion.div
-          className="mb-16 md:mb-24"
+          className="mb-16 md:mb-20"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
@@ -691,94 +760,111 @@ function SolutionSection() {
             The platform
           </p>
           <h2 className="font-display font-extrabold text-[clamp(2.25rem,6vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-cream max-w-5xl mb-6">
-            Same engine.{" "}
-            <span className="text-fire">Infinite skins.</span>
+            Direct to fan monetization.{" "}
+            <span className="text-fire">Built for every type of creator.</span>
           </h2>
           <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
-            Three creators. Three industries. Three brand palettes. One
-            platform. H30 builds it, runs it, and makes it work for each.
+            Brands. Athletes. Musicians. Entertainers. One platform, built to
+            their brand, owned by them. H30 builds it, runs it, and grows it.
           </p>
         </motion.div>
+      </div>
 
-        <div className="space-y-24 md:space-y-32">
-          {CREATOR_FRAMES.map((frame, i) => (
-            <CreatorRow
-              key={frame.name}
-              frame={frame}
-              index={i + 1}
-              total={CREATOR_FRAMES.length}
-              reverse={i % 2 === 1}
-              reduce={reduce}
-            />
+      <motion.div
+        className="creator-carousel"
+        initial={reduce ? false : { opacity: 0 }}
+        whileInView={reduce ? undefined : { opacity: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: EASE }}
+      >
+        <div className="creator-carousel__track py-2">
+          {loop.map((card, i) => (
+            <div key={i} className="creator-card">
+              {card.type === "image" ? (
+                <>
+                  <Image
+                    src={card.src!}
+                    alt={card.name}
+                    width={card.width!}
+                    height={card.height!}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    sizes="240px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ground/80 via-transparent to-transparent" />
+                </>
+              ) : (
+                <div className={`absolute inset-0 bg-gradient-to-b ${card.gradient} flex items-center justify-center p-6`}>
+                  <Image
+                    src={card.logo!}
+                    alt={card.name}
+                    width={card.logoW!}
+                    height={card.logoH!}
+                    className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
+                    sizes="180px"
+                  />
+                </div>
+              )}
+              <div className="absolute bottom-0 left-0 right-0 px-4 py-4">
+                <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-fire mb-1">
+                  {card.tag}
+                </p>
+                <p className="font-display font-bold text-sm text-cream leading-tight">
+                  {card.name}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
+      </motion.div>
+
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12">
+        <motion.div
+          className="grid md:grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.85, ease: EASE }}
+        >
+          <div>
+            <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-fire mb-3">
+              Finance podcast
+            </p>
+            <Image
+              src="/topfan/bonded-wealth.png"
+              alt="Bonded Wealth on Topfan"
+              width={1070}
+              height={637}
+              sizes="(max-width: 768px) 90vw, 45vw"
+              className="w-full h-auto"
+            />
+          </div>
+          <div>
+            <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-fire mb-3">
+              Wellness coach
+            </p>
+            <Image
+              src="/topfan/sienna-brooks.png"
+              alt="Sienna Brooks on Topfan"
+              width={1070}
+              height={637}
+              sizes="(max-width: 768px) 90vw, 45vw"
+              className="w-full h-auto"
+            />
+          </div>
+        </motion.div>
 
         <motion.p
-          className="text-xl md:text-2xl text-cream font-medium leading-snug mt-20 md:mt-28 max-w-3xl"
+          className="text-xl md:text-2xl text-cream font-medium leading-snug mt-14 md:mt-18 max-w-3xl"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.85, ease: EASE }}
         >
-          Same engine. Three industries.{" "}
-          <span className="text-fire">Talent owns it.</span>
+          One platform. Every vertical.{" "}
+          <span className="text-fire">Talent owns it all.</span>
         </motion.p>
       </div>
     </section>
-  );
-}
-
-function CreatorRow({
-  frame,
-  index,
-  total,
-  reverse,
-  reduce,
-}: {
-  frame: CreatorFrame;
-  index: number;
-  total: number;
-  reverse: boolean;
-  reduce: boolean | null;
-}) {
-  return (
-    <motion.div
-      className="grid md:grid-cols-12 gap-8 md:gap-12 items-center"
-      initial={reduce ? false : { opacity: 0, y: 32 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.85, ease: EASE }}
-    >
-      <div
-        className={`md:col-span-7 ${reverse ? "md:order-2" : "md:order-1"}`}
-      >
-        <Image
-          src={frame.src}
-          alt={`${frame.name} on Topfan`}
-          width={1200}
-          height={900}
-          sizes="(max-width: 768px) 90vw, 55vw"
-          className="w-full h-auto"
-          priority={index === 1}
-        />
-      </div>
-      <div
-        className={`md:col-span-5 ${reverse ? "md:order-1" : "md:order-2"}`}
-      >
-        <p className="font-mono text-[10px] tracking-[0.28em] uppercase text-fire mb-3">
-          0{index} / 0{total} .. {frame.industry}
-        </p>
-        <h3 className="font-display font-extrabold text-[clamp(1.75rem,3vw,2.75rem)] leading-[1.05] text-cream mb-2">
-          {frame.name}
-        </h3>
-        <p className="text-sm font-medium text-mute tracking-wide mb-5">
-          {frame.location}
-        </p>
-        <p className="text-base md:text-lg text-cream/85 leading-relaxed max-w-md">
-          {frame.features}
-        </p>
-      </div>
-    </motion.div>
   );
 }
 
@@ -786,26 +872,67 @@ const ENGINE_SERVICES = [
   {
     title: "Onboarding & migration",
     body: "Move creators off legacy platforms onto their own ecosystem. Set up the Topfan stack, port the data, brand the surface, ship it live.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="8" height="18" rx="1.5"/>
+        <path d="M14 8l6 4-6 4"/>
+        <path d="M20 12H10"/>
+      </svg>
+    ),
   },
   {
     title: "Content strategy",
     body: "Editorial direction, format experiments, programming calendars. We figure out what to publish, when, and why it lands.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M15 9l-4.5 4.5M9 15l1.5-1.5"/>
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+    ),
   },
   {
     title: "Monetization architecture",
     body: "Subscription tiers, merch, live drops, paid DMs, sponsor integration. The economy underneath the audience, designed deliberately.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2l9 4.5L12 11 3 6.5z"/>
+        <path d="M3 11.5l9 4.5 9-4.5"/>
+        <path d="M3 17l9 4.5 9-4.5"/>
+      </svg>
+    ),
   },
   {
     title: "Audience growth",
     body: "Cross-platform funnel and partner amplification through Rolling Stone, Billboard, and the agency network. Volume meets ownership.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 17l5-6 4 3.5L17 8l4-2"/>
+        <path d="M17 6h4v4"/>
+      </svg>
+    ),
   },
   {
     title: "Production",
     body: "Original content built with Notorious, Meteor 17, and Fogo.TV. Award-winning teams, on demand, with the IP staying with the talent.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="8" width="20" height="13" rx="1.5"/>
+        <path d="M2 12h20"/>
+        <path d="M7 8V4M12 8V4M17 8V4"/>
+      </svg>
+    ),
   },
   {
     title: "Capital and deals",
     body: "Investor introductions. M&A advisory. Built by people who took companies to Nasdaq, TSXV, and CSE.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M8.5 14.5l2-2.5 2 1.5L15.5 9"/>
+        <path d="M13.5 9h2v2"/>
+      </svg>
+    ),
   },
 ];
 
@@ -845,6 +972,7 @@ function EngineSection() {
               index={i + 1}
               title={service.title}
               body={service.body}
+              icon={service.icon}
               reduce={reduce}
             />
           ))}
@@ -858,11 +986,13 @@ function EngineCard({
   index,
   title,
   body,
+  icon,
   reduce,
 }: {
   index: number;
   title: string;
   body: string;
+  icon: React.ReactNode;
   reduce: boolean | null;
 }) {
   return (
@@ -873,9 +1003,7 @@ function EngineCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: EASE, delay: (index % 3) * 0.08 }}
     >
-      <p className="font-mono text-[10px] tracking-[0.28em] uppercase text-fire mb-4">
-        04.{String(index).padStart(2, "0")}
-      </p>
+      <div className="text-fire mb-5">{icon}</div>
       <h3 className="font-display font-bold text-[clamp(1.25rem,2vw,1.75rem)] leading-[1.15] text-cream mb-4">
         {title}
       </h3>
@@ -923,9 +1051,6 @@ const TEAM_MEMBERS = [
     credentials: "NHL · Arizona Coyotes · Hedge fund",
     bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment.",
   },
-];
-
-const PLATFORM_PARTNERS = [
   {
     initials: "JK",
     name: "Jeffrey Kohn",
@@ -959,8 +1084,8 @@ function TeamSection() {
             <span className="text-fire">of giants.</span>
           </h2>
           <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
-            The people who built the platforms creators are now leaving.
-            Now they&apos;re building the ones that replace them.
+            The architects of industry-defining platforms have re-united
+            to build the one that puts power back where it belongs.
           </p>
         </motion.div>
 
@@ -970,37 +1095,6 @@ function TeamSection() {
           ))}
         </div>
 
-        <motion.div
-          className="mt-20 md:mt-24 pt-12 border-t border-cream/15"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.85, ease: EASE }}
-        >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 items-start">
-            <div className="lg:col-span-1">
-              <p className="font-mono text-[10px] tracking-[0.28em] uppercase text-fire mb-4">
-                In partnership with
-              </p>
-              <h3 className="font-display font-extrabold text-[clamp(1.5rem,2.5vw,2.25rem)] leading-[1.05] text-cream mb-3">
-                Platform partner.
-              </h3>
-              <p className="text-sm text-cream/70 leading-relaxed max-w-sm">
-                Topfan is the white-labeled engine underneath every H30 creator.
-                Jeff built it.
-              </p>
-            </div>
-
-            {PLATFORM_PARTNERS.map((member, i) => (
-              <TeamCard
-                key={member.name}
-                member={member}
-                index={i}
-                reduce={reduce}
-              />
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
@@ -1056,124 +1150,6 @@ function TeamPortrait({ initials }: { initials: string }) {
   );
 }
 
-const PARTNERSHIPS = [
-  {
-    name: "Topfan",
-    tag: "Platform",
-    description:
-      "World leader in fan engagement technology. The white-labeled platform underneath every H30 creator.",
-  },
-  {
-    name: "Arthouse Media Group",
-    tag: "Distribution",
-    description:
-      "Rolling Stone, Billboard, NXNE. Combined 100M+ monthly footprint across sports, music, and entertainment.",
-  },
-  {
-    name: "Notorious Productions",
-    tag: "Production",
-    description:
-      "30 years of content production. UFC, Joe Rogan, Kill Tony, Louis CK, Kevin James.",
-  },
-  {
-    name: "Meteor 17",
-    tag: "Documentary",
-    description:
-      "Produces the world's most-watched music documentaries, streaming globally.",
-  },
-  {
-    name: "Fogo.TV",
-    tag: "Production",
-    description: "Grammy, Emmy, Gemini, and Juno award-winning productions.",
-  },
-  {
-    name: "Warner Music + CBS",
-    tag: "MOU signed",
-    description: "MOU signed for an immersive tech platform.",
-  },
-  {
-    name: "Roq City / Tricon",
-    tag: "Community",
-    description:
-      "Cultural ecosystem and community programming partnership.",
-  },
-];
-
-function PartnershipsSection() {
-  const reduce = useReducedMotion();
-  return (
-    <section
-      id="partners"
-      className="relative border-t border-cream/10 px-6 md:px-12 py-24 md:py-32"
-    >
-      <div className="mx-auto max-w-[1440px]">
-        <motion.div
-          className="mb-16 md:mb-20 max-w-5xl"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.85, ease: EASE }}
-        >
-          <p className="text-[10px] tracking-[0.28em] uppercase font-medium text-mute mb-6">
-            <span className="font-mono text-fire mr-2">06</span>
-            Partnerships
-          </p>
-          <h2 className="font-display font-extrabold text-[clamp(2.25rem,6vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-cream mb-6">
-            The network is{" "}
-            <span className="text-fire">the moat.</span>
-          </h2>
-          <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
-            Seven partnerships. One direction. The infrastructure to build,
-            distribute, produce, and capitalize what comes next.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-px bg-cream/10 border border-cream/10">
-          {PARTNERSHIPS.map((partner, i) => (
-            <PartnerCard
-              key={partner.name}
-              partner={partner}
-              index={i}
-              reduce={reduce}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PartnerCard({
-  partner,
-  index,
-  reduce,
-}: {
-  partner: (typeof PARTNERSHIPS)[number];
-  index: number;
-  reduce: boolean | null;
-}) {
-  return (
-    <motion.div
-      className="bg-ground p-8 md:p-10 group hover:bg-deeper/80 transition-colors"
-      initial={reduce ? false : { opacity: 0, y: 24 }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, ease: EASE, delay: (index % 2) * 0.08 }}
-    >
-      <div className="flex items-start justify-between gap-6 mb-4">
-        <h3 className="font-display font-extrabold text-[clamp(1.5rem,2.5vw,2.25rem)] leading-[1.05] text-cream tracking-tight">
-          {partner.name}
-        </h3>
-        <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-fire shrink-0 mt-2 whitespace-nowrap">
-          {partner.tag}
-        </span>
-      </div>
-      <p className="text-base text-cream/75 leading-relaxed">
-        {partner.description}
-      </p>
-    </motion.div>
-  );
-}
 
 function FinalCTA() {
   const reduce = useReducedMotion();

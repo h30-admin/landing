@@ -179,6 +179,46 @@
   mix-blend-mode: screen;
 }
 
+/* Creator carousel .. portrait cards, auto-scroll */
+.creator-carousel {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+}
+
+.creator-carousel__track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: max-content;
+  gap: 1.25rem;
+  animation: creator-scroll 48s linear infinite;
+  will-change: transform;
+}
+
+.creator-carousel:hover .creator-carousel__track {
+  animation-play-state: paused;
+}
+
+.creator-card {
+  flex: 0 0 auto;
+  width: clamp(180px, 22vw, 240px);
+  aspect-ratio: 9 / 13;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(244, 241, 230, 0.08);
+}
+
+@keyframes creator-scroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .creator-carousel__track { animation: none; }
+}
+
 /* Partner marquee .. infinite horizontal scroll */
 .marquee-shell {
   position: relative;

@@ -578,16 +578,16 @@ function EmailCapture() {
         >
           <div className="md:col-span-6">
             <p className="text-[10px] tracking-[0.28em] uppercase font-medium text-mute mb-6">
-              The brief
+              Start here
             </p>
             <h2 className="font-display font-extrabold text-[clamp(2rem,4.5vw,3.75rem)] leading-[0.98] tracking-[-0.025em] text-cream mb-5">
-              Not ready to talk?{" "}
-              <span className="text-mute">Get the read instead.</span>
+              Curious to hear more?{" "}
+              <span className="text-fire">Book a call today.</span>
             </h2>
             <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-xl">
-              Once a quarter, H30 sends the brief on creator ownership,
-              consolidation moves, and the talent making the jump. No
-              spam, no funnel pressure.
+              Drop your email and we&apos;ll reach out to walk you through
+              the platform and show you what ownership looks like for
+              your audience.
             </p>
           </div>
 
@@ -615,7 +615,7 @@ function EmailCapture() {
                   ? "Sending..."
                   : status === "success"
                     ? "On the list"
-                    : "Subscribe"}
+                    : "Get started"}
               </button>
             </div>
 
@@ -630,9 +630,6 @@ function EmailCapture() {
               )}
             </div>
 
-            <p className="text-[10px] tracking-[0.28em] uppercase text-mute mt-2 font-mono">
-              Klaviyo wiring pending .. submissions log to console for now
-            </p>
           </form>
         </motion.div>
       </div>
@@ -707,6 +704,33 @@ const CREATOR_CARDS = [
   },
 ];
 
+const PLATFORM_FEATURES = [
+  {
+    title: "Your Own Direct-to-Fan Platform",
+    body: "Reduce social platform dependency with fully white-labeled websites and iOS/Android mobile apps for your fan community.",
+  },
+  {
+    title: "Sell Premium Content",
+    body: "All your content in one place — videos, podcasts, music, courses, articles — available by subscription or single purchase.",
+  },
+  {
+    title: "Merchandise & Experiences",
+    body: "Integrated physical merchandise sales and personalized 1:1 fan experiences, including video calls and shoutouts.",
+  },
+  {
+    title: "Go Live With Your Fans",
+    body: "Interactive livestream technology with the ability to sell your products and services directly during the video livestream.",
+  },
+  {
+    title: "Powerful Email Newsletters",
+    body: "Build a database of fans and proactively send them free or locked newsletter content by email.",
+  },
+  {
+    title: "Fan Relationship Management",
+    body: "Own and manage detailed data profiles about your fans and send targeted SMS, emails, app notifications, and DMs.",
+  },
+];
+
 function SolutionSection() {
   const reduce = useReducedMotion();
   const loop = [...CREATOR_CARDS, ...CREATOR_CARDS];
@@ -718,7 +742,7 @@ function SolutionSection() {
     >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12">
         <motion.div
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-16"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-120px" }}
@@ -729,13 +753,50 @@ function SolutionSection() {
             The platform
           </p>
           <h2 className="font-display font-extrabold text-[clamp(2.25rem,6vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-cream max-w-5xl mb-6">
-            Direct to fan monetization.{" "}
-            <span className="text-fire">Built for every type of creator.</span>
+            Monetization has never{" "}
+            <span className="text-fire">been easier.</span>
           </h2>
           <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
-            Brands. Athletes. Musicians. Entertainers. One platform, built to
-            their brand, owned by them. H30 builds it, runs it, and grows it.
+            Everything you need to own your audience, your content, and your revenue. One platform, built to your brand.
           </p>
+        </motion.div>
+
+        <motion.div
+          className="mb-24 md:mb-32"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.85, ease: EASE }}
+        >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-cream/10 border border-cream/10 overflow-hidden">
+            {PLATFORM_FEATURES.map((f, i) => (
+              <div key={i} className="bg-ground p-8 md:p-10">
+                <p className="font-mono text-fire text-[10px] tracking-[0.28em] uppercase mb-5">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-display font-bold text-cream text-base md:text-lg leading-snug mb-3">
+                  {f.title}
+                </h3>
+                <p className="text-cream/60 text-sm leading-relaxed">{f.body}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="mb-10 md:mb-12"
+          initial={reduce ? false : { opacity: 0, y: 16 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          <p className="text-[10px] tracking-[0.28em] uppercase font-medium text-mute mb-4">
+            Direct to fan monetization
+          </p>
+          <h3 className="font-display font-extrabold text-[clamp(1.5rem,3.5vw,3rem)] leading-[0.98] tracking-[-0.025em] text-cream">
+            Built for every type of creator.{" "}
+            <span className="text-fire">Trusted by leaders in Sports &amp; Entertainment.</span>
+          </h3>
         </motion.div>
       </div>
 

@@ -210,21 +210,6 @@ function Hero() {
       id="top"
       className="relative min-h-screen flex flex-col px-6 md:px-12 pt-28 pb-10"
     >
-      {/* top slot */}
-      <motion.div
-        className="flex items-start justify-between text-mute"
-        {...fadeUp(0)}
-      >
-        <div className="text-[10px] tracking-[0.28em] uppercase font-medium">
-          <span className="font-mono text-fire mr-2">00</span>
-          The sovereignty engine
-        </div>
-        <div className="hidden md:block text-[10px] tracking-[0.28em] uppercase font-medium text-right max-w-[20ch] leading-relaxed">
-          Built by the people behind
-          <br />
-          TSN .. UFC Canada .. GMP
-        </div>
-      </motion.div>
 
       {/* middle slot */}
       <div className="flex-1 flex items-center mt-12 md:mt-0">
@@ -655,15 +640,6 @@ function EmailCapture() {
 }
 
 const CREATOR_CARDS = [
-  {
-    type: "image",
-    src: "/topfan/sienna-mobile.png",
-    width: 1080,
-    height: 1920,
-    name: "Sienna Brooks",
-    tag: "Wellness",
-    gradient: "",
-  },
   {
     type: "logo",
     logo: "/partners/maroon-5.png",

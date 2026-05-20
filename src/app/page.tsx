@@ -1218,8 +1218,8 @@ function FinalCTA() {
               )}
               <p className="mt-4 text-xs text-mute">
                 Or reach us directly at{" "}
-                <a href="mailto:jesse@h30.live" className="text-cream/60 hover:text-cream transition-colors underline underline-offset-4 decoration-cream/20">
-                  jesse@h30.live
+                <a href="mailto:admin@hangr3.io" className="text-cream/60 hover:text-cream transition-colors underline underline-offset-4 decoration-cream/20">
+                  admin@hangr3.io
                 </a>
               </p>
             </form>

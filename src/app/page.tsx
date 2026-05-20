@@ -641,7 +641,6 @@ function EmailCapture() {
 
 const CREATOR_CARDS = [
   {
-    type: "logo",
     logo: "/partners/maroon-5.png",
     logoW: 886,
     logoH: 169,
@@ -650,7 +649,6 @@ const CREATOR_CARDS = [
     gradient: "from-violet/60 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/denver-broncos.png",
     logoW: 1280,
     logoH: 751,
@@ -659,7 +657,6 @@ const CREATOR_CARDS = [
     gradient: "from-navy/70 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/lumineers.png",
     logoW: 1299,
     logoH: 600,
@@ -668,7 +665,6 @@ const CREATOR_CARDS = [
     gradient: "from-ember/50 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/nfl-pa.png",
     logoW: 2000,
     logoH: 676,
@@ -677,7 +673,6 @@ const CREATOR_CARDS = [
     gradient: "from-navy/70 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/mgm.png",
     logoW: 3840,
     logoH: 2160,
@@ -686,7 +681,6 @@ const CREATOR_CARDS = [
     gradient: "from-violet/50 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/wb.png",
     logoW: 569,
     logoH: 600,
@@ -695,7 +689,6 @@ const CREATOR_CARDS = [
     gradient: "from-ember/50 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/9er.png",
     logoW: 610,
     logoH: 600,
@@ -704,7 +697,6 @@ const CREATOR_CARDS = [
     gradient: "from-navy/60 via-ground to-deeper",
   },
   {
-    type: "logo",
     logo: "/partners/fox.png",
     logoW: 1441,
     logoH: 600,
@@ -756,30 +748,16 @@ function SolutionSection() {
         <div className="creator-carousel__track py-2">
           {loop.map((card, i) => (
             <div key={i} className="creator-card">
-              {card.type === "image" ? (
-                <>
-                  <Image
-                    src={card.src!}
-                    alt={card.name}
-                    width={card.width!}
-                    height={card.height!}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                    sizes="240px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ground/80 via-transparent to-transparent" />
-                </>
-              ) : (
-                <div className={`absolute inset-0 bg-gradient-to-b ${card.gradient} flex items-center justify-center p-6`}>
-                  <Image
-                    src={card.logo!}
-                    alt={card.name}
-                    width={card.logoW!}
-                    height={card.logoH!}
-                    className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
-                    sizes="180px"
-                  />
-                </div>
-              )}
+              <div className={`absolute inset-0 bg-gradient-to-b ${card.gradient} flex items-center justify-center p-6`}>
+                <Image
+                  src={card.logo}
+                  alt={card.name}
+                  width={card.logoW}
+                  height={card.logoH}
+                  className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
+                  sizes="180px"
+                />
+              </div>
               <div className="absolute bottom-0 left-0 right-0 px-4 py-4">
                 <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-fire mb-1">
                   {card.tag}

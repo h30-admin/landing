@@ -1127,6 +1127,29 @@ function TeamCard({
 
 function FinalCTA() {
   const reduce = useReducedMotion();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email || !email.includes("@") || email.length < 5) return;
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section
       id="cta"
@@ -1141,49 +1164,66 @@ function FinalCTA() {
           transition={{ duration: 0.85, ease: EASE }}
         >
           <p className="text-[10px] tracking-[0.28em] uppercase font-medium text-mute mb-6">
-            <span className="font-mono text-fire mr-2">07</span>
+            <span className="font-mono text-fire mr-2">06</span>
             The call
           </p>
           <h2 className="font-display font-extrabold text-[clamp(2.5rem,8vw,8rem)] leading-[0.92] tracking-[-0.025em] text-cream mb-10">
             Ready to own{" "}
             <span className="text-fire">what you built?</span>
           </h2>
-          <p className="text-lg md:text-xl text-cream/80 leading-relaxed max-w-2xl mb-14">
-            Book a discovery call. Tell us about your audience. We&apos;ll
-            show you what the off-ramp looks like, how the platform gets
-            built, and how H30 runs it.
+          <p className="text-lg md:text-xl text-cream/80 leading-relaxed max-w-2xl mb-12">
+            Drop your email. Our team will reach out to book your discovery
+            call, walk you through the platform, and show you what ownership
+            actually looks like for your audience.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-12 sm:items-center">
-            <a
-              href="mailto:jesse@h30.live?subject=H30%20discovery%20call"
-              className="cta-double group relative inline-flex items-center gap-4 bg-cream text-ground px-8 py-5 text-sm font-semibold tracking-[0.16em] uppercase shrink-0 overflow-hidden transition-colors hover:bg-fire hover:text-cream"
-            >
-              <span className="cta-double__label relative">
-                <span className="cta-double__primary">
-                  Book a discovery call
-                </span>
-                <span aria-hidden="true" className="cta-double__ghost">
-                  Book a discovery call
-                </span>
-              </span>
-              <span className="text-base leading-none transition-transform duration-300 group-hover:translate-x-1">
-                &rarr;
-              </span>
-            </a>
-
-            <div className="text-sm text-mute leading-relaxed">
-              <span className="block mb-1 font-mono text-[10px] tracking-[0.28em] uppercase">
-                Or send a note
-              </span>
-              <a
-                href="mailto:jesse@h30.live"
-                className="text-cream hover:text-fire transition-colors underline underline-offset-4 decoration-cream/30 hover:decoration-fire"
-              >
-                jesse@h30.live
-              </a>
+          {status === "success" ? (
+            <div className="max-w-xl">
+              <p className="text-xl font-display font-bold text-cream mb-2">
+                You&apos;re in. Check your inbox.
+              </p>
+              <p className="text-cream/60 text-base">
+                We&apos;ll be in touch within 48 hours to book your call.
+              </p>
             </div>
-          </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="max-w-xl">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  className="flex-1 bg-transparent border border-cream/30 text-cream placeholder:text-mute px-5 py-4 text-sm focus:outline-none focus:border-cream/70 transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="cta-double group relative inline-flex items-center justify-center gap-3 bg-cream text-ground px-7 py-4 text-sm font-semibold tracking-[0.14em] uppercase shrink-0 overflow-hidden transition-colors hover:bg-fire hover:text-cream disabled:opacity-50"
+                >
+                  <span className="cta-double__label relative">
+                    <span className="cta-double__primary">
+                      {status === "submitting" ? "Sending.." : "Book a call"}
+                    </span>
+                    <span aria-hidden="true" className="cta-double__ghost">
+                      {status === "submitting" ? "Sending.." : "Book a call"}
+                    </span>
+                  </span>
+                  <span className="text-base leading-none transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                </button>
+              </div>
+              {status === "error" && (
+                <p className="mt-3 text-sm text-fire">Something went wrong. Try again or email jesse@h30.live directly.</p>
+              )}
+              <p className="mt-4 text-xs text-mute">
+                Or reach us directly at{" "}
+                <a href="mailto:jesse@h30.live" className="text-cream/60 hover:text-cream transition-colors underline underline-offset-4 decoration-cream/20">
+                  jesse@h30.live
+                </a>
+              </p>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>

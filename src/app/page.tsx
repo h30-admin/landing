@@ -1014,49 +1014,40 @@ function EngineCard({
 
 const TEAM_MEMBERS = [
   {
-    initials: "JD",
     name: "Jesse Dylan",
-    role: "Executive Chairman",
-    credentials:
-      "TSN · XM Satellite Radio Canada · Citytv · Stingray · UFC Canada · Nasdaq · TSXV · CSE",
-    bio: "Multi-generational media innovator. Launched TSN and XM Satellite Radio Canada. Led Citytv, Stingray, and Viewers Choice. Brought UFC to Canada. Built multiple publicly listed companies.",
+    role: "Chairman",
+    credentials: "Nasdaq · TSXV · CSE · TSN · UFC Canada · Citytv · Stingray",
+    bio: "Award-winning broadcaster and best-selling author. Built multiple companies listed on Nasdaq, TSXV & CSE. Multi-generational media innovator.",
   },
   {
-    initials: "CC",
     name: "Craig Conley",
     role: "President of Sports",
-    credentials:
-      "UFC · NHL · NFL · NBA · NASCAR · Niner Sports",
-    bio: "Founder, Niner Sports. Produced every live televised UFC event for 24 years. Manages elite talent across UFC, NHL, NFL, NBA, NASCAR — Charles Barkley, Alex Pereira, Bruce Buffer, Jon Anik.",
+    credentials: "UFC · NHL · NFL · NBA · NASCAR · Niner Sports",
+    bio: "Founder, Niner Sports. Produced every live televised UFC event for 24 years. Manages elite roster across NHL, NFL, NBA, NASCAR & UFC.",
   },
   {
-    initials: "ST",
     name: "Stephen Tapp",
-    role: "President",
-    credentials:
-      "TSN · XM Satellite Radio Canada · Citytv · Stingray · UFC Canada",
+    role: "Co-Chairman",
+    credentials: "TSN · XM Satellite Radio Canada · Citytv · Stingray · UFC Canada",
     bio: "Launched TSN and XM Satellite Radio Canada. Led Citytv, Stingray, Viewers Choice. Brought UFC to Canada. Deep expertise in global content distribution.",
   },
   {
-    initials: "MW",
     name: "Mike Wekerle",
     role: "Capital Markets",
     credentials: "GMP Securities · GMPIM · Fiera Capital",
     bio: "Co-founded GMP Securities. Built GMPIM to nearly $1B AUM before sale to Fiera Capital. One of Canada's most celebrated capital markets veterans.",
   },
   {
-    initials: "AB",
     name: "Andy Barroway",
     role: "Senior Advisor, Sports Business",
-    credentials: "NHL · Arizona Coyotes · Hedge fund",
-    bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment.",
+    credentials: "NHL · Arizona Coyotes",
+    bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment and strategic deployment.",
   },
   {
-    initials: "JK",
     name: "Jeffrey Kohn",
     role: "Founder, Topfan",
     credentials: "Topfan · NASA · Oracle · Sun Microsystems · RH Donnelley",
-    bio: "Founded Topfan in 2015 after two decades at NASA Mission Control, Sun Microsystems, and Oracle as a Distinguished Enterprise Architect. Built the Direct-to-Fan and Fan Relationship Management technology now powering H30's creators. Puts first-party fan data back in talent's hands.",
+    bio: "Founded Topfan in 2015 after two decades at NASA Mission Control, Sun Microsystems, and Oracle as a Distinguished Enterprise Architect. Built the Direct-to-Fan and Fan Relationship Management technology now powering H30's creators.",
   },
 ];
 
@@ -1111,42 +1102,25 @@ function TeamCard({
 }) {
   return (
     <motion.div
-      className="group"
+      className="border-t border-cream/15 pt-6"
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: EASE, delay: (index % 3) * 0.08 }}
     >
-      <TeamPortrait initials={member.initials} />
-      <div className="mt-6">
-        <h3 className="font-display font-extrabold text-2xl leading-tight text-cream mb-1">
-          {member.name}
-        </h3>
-        <p className="text-sm font-medium text-fire tracking-wide uppercase mb-4">
-          {member.role}
-        </p>
-        <p className="text-sm text-cream/75 leading-relaxed mb-4">
-          {member.bio}
-        </p>
-        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-mute leading-relaxed">
-          {member.credentials}
-        </p>
-      </div>
+      <h3 className="font-display font-extrabold text-2xl leading-tight text-cream mb-1">
+        {member.name}
+      </h3>
+      <p className="text-sm font-medium text-fire tracking-wide uppercase mb-4">
+        {member.role}
+      </p>
+      <p className="text-sm text-cream/75 leading-relaxed mb-5">
+        {member.bio}
+      </p>
+      <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-mute leading-relaxed">
+        {member.credentials}
+      </p>
     </motion.div>
-  );
-}
-
-function TeamPortrait({ initials }: { initials: string }) {
-  return (
-    <div className="aspect-[4/5] relative bg-gradient-to-br from-deeper via-ground to-navy/30 border border-cream/10 flex items-center justify-center overflow-hidden">
-      <span className="font-display font-extrabold text-[clamp(3rem,6vw,5rem)] text-cream/55 tracking-tight">
-        {initials}
-      </span>
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ground to-transparent pointer-events-none" />
-      <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.24em] uppercase text-mute">
-        B&W portrait pending
-      </div>
-    </div>
   );
 }
 

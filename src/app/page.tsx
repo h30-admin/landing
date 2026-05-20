@@ -309,15 +309,16 @@ type MarqueePartner = {
   src?: string;
   width?: number;
   height?: number;
+  bright?: boolean;
 };
 
 const PARTNERS: MarqueePartner[] = [
-  { name: "Denver Broncos", src: "/partners/denver-broncos.png", width: 1280, height: 751 },
+  { name: "Denver Broncos", src: "/partners/denver-broncos.png", width: 1280, height: 751, bright: true },
   { name: "Maroon 5", src: "/partners/maroon-5.png", width: 886, height: 169 },
   { name: "FOX", src: "/partners/fox.png", width: 1441, height: 600 },
   { name: "The Lumineers", src: "/partners/lumineers.png", width: 1299, height: 600 },
   { name: "WB", src: "/partners/wb.png", width: 569, height: 600 },
-  { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676 },
+  { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676, bright: true },
   { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
   { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
 ];
@@ -363,6 +364,7 @@ function PartnerMarquee() {
                     width={partner.width}
                     height={partner.height}
                     className="marquee-item__logo-img"
+                    style={partner.bright ? { opacity: 1 } : undefined}
                     sizes="200px"
                   />
                 </span>

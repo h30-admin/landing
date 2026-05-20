@@ -656,7 +656,6 @@ const CREATOR_CARDS = [
     name: "Denver Broncos",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
-    bright: true,
   },
   {
     logo: "/partners/lumineers.png",
@@ -673,7 +672,6 @@ const CREATOR_CARDS = [
     name: "NFL Players Assoc.",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
-    bright: true,
   },
   {
     logo: "/partners/mgm.png",
@@ -757,7 +755,7 @@ function SolutionSection() {
                   alt={card.name}
                   width={card.logoW}
                   height={card.logoH}
-                  className={`w-full h-auto max-h-16 object-contain filter brightness-0 invert ${card.bright ? "opacity-100" : "opacity-80"}`}
+                  className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
                   sizes="180px"
                 />
               </div>

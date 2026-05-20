@@ -6,7 +6,25 @@ export const contentType = "image/png";
 export const alt =
   "H30 — Your fans. Your platform. Your revenue. Acquiring the future of media IP.";
 
+async function fetchGoogleFont(
+  family: string,
+  weight: number,
+): Promise<ArrayBuffer> {
+  const css = await fetch(
+    `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}:wght@${weight}&display=swap`,
+    { headers: { "User-Agent": "Mozilla/5.0" } },
+  ).then((r) => r.text());
+  const url = css.match(/src: url\((.+?)\) format/)?.[1];
+  if (!url) throw new Error(`Could not parse font URL for ${family} ${weight}`);
+  return fetch(url).then((r) => r.arrayBuffer());
+}
+
 export default async function OpenGraphImage() {
+  const [dmSans800, dmSans500] = await Promise.all([
+    fetchGoogleFont("DM Sans", 800),
+    fetchGoogleFont("DM Sans", 500),
+  ]);
+
   return new ImageResponse(
     (
       <div
@@ -18,10 +36,10 @@ export default async function OpenGraphImage() {
           background: "#08081A",
           padding: "72px",
           position: "relative",
-          fontFamily: "Inter, system-ui, sans-serif",
+          fontFamily: "DM Sans",
         }}
       >
-        {/* ambient gradient layer */}
+        {/* ambient gradient */}
         <div
           style={{
             position: "absolute",
@@ -32,7 +50,7 @@ export default async function OpenGraphImage() {
           }}
         />
 
-        {/* top row: logo + eyebrow tag */}
+        {/* top row */}
         <div
           style={{
             display: "flex",
@@ -41,26 +59,27 @@ export default async function OpenGraphImage() {
             position: "relative",
           }}
         >
-          <div style={{ display: "flex", alignItems: "baseline" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "20px" }}>
             <span
               style={{
-                fontSize: "48px",
-                fontWeight: 900,
+                fontSize: "52px",
+                fontWeight: 800,
                 color: "#F4F1E6",
                 letterSpacing: "-0.04em",
                 lineHeight: 1,
+                fontFamily: "DM Sans",
               }}
             >
               H30
             </span>
             <span
               style={{
-                fontSize: "14px",
+                fontSize: "13px",
                 color: "#8896B8",
-                marginLeft: "22px",
                 letterSpacing: "5px",
                 textTransform: "uppercase",
-                fontWeight: 600,
+                fontWeight: 500,
+                fontFamily: "DM Sans",
               }}
             >
               Media Group
@@ -69,15 +88,15 @@ export default async function OpenGraphImage() {
 
           <span
             style={{
-              fontSize: "13px",
+              fontSize: "12px",
               color: "#F03B5C",
               letterSpacing: "6px",
               textTransform: "uppercase",
-              fontWeight: 700,
-              fontFamily: "ui-monospace, monospace",
+              fontWeight: 800,
+              fontFamily: "DM Sans",
             }}
           >
-            The Sovereignty Engine
+            h30.live
           </span>
         </div>
 
@@ -94,51 +113,55 @@ export default async function OpenGraphImage() {
         >
           <span
             style={{
-              fontSize: "32px",
+              fontSize: "28px",
               color: "#8896B8",
               fontWeight: 500,
-              marginBottom: "16px",
+              marginBottom: "20px",
               letterSpacing: "-0.01em",
+              fontFamily: "DM Sans",
             }}
           >
             You built the audience.
           </span>
           <span
             style={{
-              fontSize: "120px",
-              fontWeight: 900,
+              fontSize: "116px",
+              fontWeight: 800,
               color: "#F4F1E6",
               lineHeight: 0.94,
               letterSpacing: "-0.035em",
+              fontFamily: "DM Sans",
             }}
           >
             Your fans.
           </span>
           <span
             style={{
-              fontSize: "120px",
-              fontWeight: 900,
+              fontSize: "116px",
+              fontWeight: 800,
               color: "#F4F1E6",
               lineHeight: 0.94,
               letterSpacing: "-0.035em",
+              fontFamily: "DM Sans",
             }}
           >
             Your platform.
           </span>
           <span
             style={{
-              fontSize: "120px",
-              fontWeight: 900,
+              fontSize: "116px",
+              fontWeight: 800,
               color: "#F03B5C",
               lineHeight: 0.94,
               letterSpacing: "-0.035em",
+              fontFamily: "DM Sans",
             }}
           >
             Your revenue.
           </span>
         </div>
 
-        {/* footer URL + tagline */}
+        {/* footer */}
         <div
           style={{
             display: "flex",
@@ -150,32 +173,25 @@ export default async function OpenGraphImage() {
         >
           <span
             style={{
-              fontSize: "16px",
-              color: "#8896B8",
-              letterSpacing: "5px",
-              textTransform: "uppercase",
-              fontWeight: 600,
-            }}
-          >
-            h30.live · Acquiring the future of media IP
-          </span>
-          <span
-            style={{
               fontSize: "14px",
               color: "#8896B8",
-              letterSpacing: "5px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              fontWeight: 600,
-              fontFamily: "ui-monospace, monospace",
+              fontWeight: 500,
+              fontFamily: "DM Sans",
             }}
           >
-            00 / 07
+            Acquiring the future of media IP
           </span>
         </div>
       </div>
     ),
     {
       ...size,
+      fonts: [
+        { name: "DM Sans", data: dmSans800, weight: 800, style: "normal" },
+        { name: "DM Sans", data: dmSans500, weight: 500, style: "normal" },
+      ],
     },
   );
 }

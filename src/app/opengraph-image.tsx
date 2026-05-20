@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import fs from "fs";
+import path from "path";
 
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
@@ -25,6 +27,11 @@ export default async function OpenGraphImage() {
     fetchGoogleFont("DM Sans", 500),
   ]);
 
+  const logoBuffer = fs.readFileSync(
+    path.join(process.cwd(), "public/brand/h30-logo-icon.png"),
+  );
+  const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -34,23 +41,56 @@ export default async function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           background: "#08081A",
-          padding: "72px",
+          padding: "64px 72px",
           position: "relative",
           fontFamily: "DM Sans",
+          overflow: "hidden",
         }}
       >
-        {/* ambient gradient */}
+        {/* strong violet bloom top-left */}
         <div
           style={{
             position: "absolute",
-            inset: 0,
-            display: "flex",
+            top: "-120px",
+            left: "-80px",
+            width: "700px",
+            height: "700px",
+            borderRadius: "50%",
             background:
-              "radial-gradient(circle at 18% 25%, rgba(140, 70, 215, 0.55) 0%, rgba(140, 70, 215, 0) 50%), radial-gradient(circle at 82% 85%, rgba(240, 59, 92, 0.45) 0%, rgba(240, 59, 92, 0) 48%), radial-gradient(circle at 70% 20%, rgba(60, 110, 200, 0.4) 0%, rgba(60, 110, 200, 0) 45%)",
+              "radial-gradient(circle, rgba(140, 70, 215, 0.75) 0%, rgba(91, 46, 140, 0) 65%)",
+            display: "flex",
+          }}
+        />
+        {/* fire bloom bottom-right */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-100px",
+            right: "-60px",
+            width: "600px",
+            height: "600px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(240, 59, 92, 0.65) 0%, rgba(139, 26, 31, 0) 65%)",
+            display: "flex",
+          }}
+        />
+        {/* navy mid */}
+        <div
+          style={{
+            position: "absolute",
+            top: "80px",
+            right: "100px",
+            width: "500px",
+            height: "500px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(60, 110, 200, 0.45) 0%, rgba(31, 58, 110, 0) 65%)",
+            display: "flex",
           }}
         />
 
-        {/* top row */}
+        {/* top row: logo + url */}
         <div
           style={{
             display: "flex",
@@ -59,38 +99,17 @@ export default async function OpenGraphImage() {
             position: "relative",
           }}
         >
-          <div style={{ display: "flex", alignItems: "baseline", gap: "20px" }}>
-            <span
-              style={{
-                fontSize: "52px",
-                fontWeight: 800,
-                color: "#F4F1E6",
-                letterSpacing: "-0.04em",
-                lineHeight: 1,
-                fontFamily: "DM Sans",
-              }}
-            >
-              H30
-            </span>
-            <span
-              style={{
-                fontSize: "13px",
-                color: "#8896B8",
-                letterSpacing: "5px",
-                textTransform: "uppercase",
-                fontWeight: 500,
-                fontFamily: "DM Sans",
-              }}
-            >
-              Media Group
-            </span>
-          </div>
-
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            alt="H30"
+            style={{ height: "40px", width: "auto" }}
+          />
           <span
             style={{
-              fontSize: "12px",
+              fontSize: "13px",
               color: "#F03B5C",
-              letterSpacing: "6px",
+              letterSpacing: "5px",
               textTransform: "uppercase",
               fontWeight: 800,
               fontFamily: "DM Sans",
@@ -103,32 +122,35 @@ export default async function OpenGraphImage() {
         {/* spacer */}
         <div style={{ flex: 1, display: "flex" }} />
 
+        {/* eyebrow */}
+        <span
+          style={{
+            fontSize: "16px",
+            color: "rgba(244,241,230,0.55)",
+            fontWeight: 500,
+            letterSpacing: "0.05em",
+            marginBottom: "20px",
+            fontFamily: "DM Sans",
+            position: "relative",
+          }}
+        >
+          You built the audience.
+        </span>
+
         {/* headline stack */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             position: "relative",
+            lineHeight: 0.92,
           }}
         >
           <span
             style={{
-              fontSize: "28px",
-              color: "#8896B8",
-              fontWeight: 500,
-              marginBottom: "20px",
-              letterSpacing: "-0.01em",
-              fontFamily: "DM Sans",
-            }}
-          >
-            You built the audience.
-          </span>
-          <span
-            style={{
-              fontSize: "116px",
+              fontSize: "118px",
               fontWeight: 800,
               color: "#F4F1E6",
-              lineHeight: 0.94,
               letterSpacing: "-0.035em",
               fontFamily: "DM Sans",
             }}
@@ -137,10 +159,9 @@ export default async function OpenGraphImage() {
           </span>
           <span
             style={{
-              fontSize: "116px",
+              fontSize: "118px",
               fontWeight: 800,
               color: "#F4F1E6",
-              lineHeight: 0.94,
               letterSpacing: "-0.035em",
               fontFamily: "DM Sans",
             }}
@@ -149,10 +170,9 @@ export default async function OpenGraphImage() {
           </span>
           <span
             style={{
-              fontSize: "116px",
+              fontSize: "118px",
               fontWeight: 800,
               color: "#F03B5C",
-              lineHeight: 0.94,
               letterSpacing: "-0.035em",
               fontFamily: "DM Sans",
             }}
@@ -166,15 +186,14 @@ export default async function OpenGraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: "48px",
+            marginTop: "40px",
             position: "relative",
           }}
         >
           <span
             style={{
-              fontSize: "14px",
-              color: "#8896B8",
+              fontSize: "13px",
+              color: "rgba(244,241,230,0.4)",
               letterSpacing: "4px",
               textTransform: "uppercase",
               fontWeight: 500,

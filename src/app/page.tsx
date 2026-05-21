@@ -1296,10 +1296,10 @@ function SiteFooter() {
             <ul className="space-y-3 mb-8">
               <li>
                 <a
-                  href="mailto:jesse@h30.live"
+                  href="mailto:admin@hangr3.io"
                   className="text-sm text-cream/85 hover:text-fire transition-colors"
                 >
-                  jesse@h30.live
+                  admin@hangr3.io
                 </a>
               </li>
               <li>

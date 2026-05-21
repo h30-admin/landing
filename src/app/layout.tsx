@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -62,6 +63,16 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-ground text-cream font-sans relative overflow-x-hidden">
         {children}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-V125VZ1TQM"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-V125VZ1TQM');
+        `}</Script>
       </body>
     </html>
   );

@@ -313,12 +313,12 @@ type MarqueePartner = {
 };
 
 const PARTNERS: MarqueePartner[] = [
-  { name: "Denver Broncos", src: "/partners/denver-broncos.png", width: 1280, height: 751 },
+  { name: "Denver Broncos", src: "/partners/denver-broncos.png", width: 1280, height: 751, natural: true },
   { name: "Maroon 5", src: "/partners/maroon-5.png", width: 886, height: 169 },
   { name: "FOX", src: "/partners/fox.png", width: 1441, height: 600 },
   { name: "The Lumineers", src: "/partners/lumineers.png", width: 1299, height: 600 },
   { name: "WB", src: "/partners/wb.png", width: 569, height: 600 },
-  { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676 },
+  { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676, natural: true },
   { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
   { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
   { name: "Team Arm Wrestling Federation", src: "/partners/tawf.png", width: 2574, height: 1379, natural: true },
@@ -656,6 +656,7 @@ const CREATOR_CARDS = [
     name: "Denver Broncos",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
+    natural: true,
   },
   {
     logo: "/partners/lumineers.png",
@@ -672,6 +673,7 @@ const CREATOR_CARDS = [
     name: "NFL Players Assoc.",
     tag: "Sports",
     gradient: "from-navy/70 via-ground to-deeper",
+    natural: true,
   },
   {
     logo: "/partners/mgm.png",

@@ -309,6 +309,7 @@ type MarqueePartner = {
   src?: string;
   width?: number;
   height?: number;
+  natural?: boolean;
 };
 
 const PARTNERS: MarqueePartner[] = [
@@ -320,7 +321,7 @@ const PARTNERS: MarqueePartner[] = [
   { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676 },
   { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
   { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
-  { name: "Team Arm Wrestling Federation", src: "/partners/tawf.png", width: 2574, height: 1379 },
+  { name: "Team Arm Wrestling Federation", src: "/partners/tawf.png", width: 2574, height: 1379, natural: true },
 ];
 
 function PartnerMarquee() {
@@ -364,6 +365,7 @@ function PartnerMarquee() {
                     width={partner.width}
                     height={partner.height}
                     className="marquee-item__logo-img"
+                    style={partner.natural ? { filter: "none", opacity: 1 } : undefined}
                     sizes="200px"
                   />
                 </span>
@@ -710,6 +712,7 @@ const CREATOR_CARDS = [
     name: "Team Arm Wrestling Federation",
     tag: "Sports",
     gradient: "from-navy/60 via-ground to-deeper",
+    natural: true,
   },
 ];
 
@@ -825,7 +828,7 @@ function SolutionSection() {
                   alt={card.name}
                   width={card.logoW}
                   height={card.logoH}
-                  className="w-full h-auto max-h-16 object-contain filter brightness-0 invert opacity-80"
+                  className={`w-full h-auto max-h-16 object-contain ${card.natural ? "opacity-100" : "filter brightness-0 invert opacity-80"}`}
                   sizes="180px"
                 />
               </div>

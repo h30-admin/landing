@@ -322,6 +322,7 @@ const PARTNERS: MarqueePartner[] = [
   { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
   { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
   { name: "Team Arm Wrestling Federation", src: "/partners/tawf.png", width: 2574, height: 1379, natural: true },
+  { name: "Inside The Music", src: "/partners/itm.png", width: 2733, height: 1212, natural: true },
 ];
 
 function PartnerMarquee() {
@@ -714,6 +715,15 @@ const CREATOR_CARDS = [
     name: "Team Arm Wrestling Federation",
     tag: "Sports",
     gradient: "from-navy/60 via-ground to-deeper",
+    natural: true,
+  },
+  {
+    logo: "/partners/itm.png",
+    logoW: 2733,
+    logoH: 1212,
+    name: "Inside The Music",
+    tag: "Music",
+    gradient: "from-violet/50 via-ground to-deeper",
     natural: true,
   },
 ];

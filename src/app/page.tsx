@@ -246,10 +246,10 @@ function Hero() {
             {...fadeUp(0.8)}
           >
             <p className="text-lg md:text-xl text-cream/80 leading-relaxed max-w-xl">
-              H30 has partnered with TopFan to create the worlds most
-              powerful Direct to Fan Monetization creators should have
-              owned all along. We run them. We grow them. You keep
-              your audience.
+              H30 has partnered with TopFan to build the world&apos;s most
+              powerful direct-to-fan monetization platform, giving
+              creators what they should&apos;ve owned all along. We run it.
+              We grow it. You keep your audience.
             </p>
 
             <a

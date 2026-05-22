@@ -320,6 +320,7 @@ const PARTNERS: MarqueePartner[] = [
   { name: "NFL Players Association", src: "/partners/nfl-pa.png", width: 2000, height: 676 },
   { name: "MGM", src: "/partners/mgm.png", width: 3840, height: 2160 },
   { name: "Niner Entertainment", src: "/partners/9er.png", width: 610, height: 600 },
+  { name: "Team Arm Wrestling Federation", src: "/partners/tawf.png", width: 2574, height: 1379 },
 ];
 
 function PartnerMarquee() {
@@ -701,6 +702,14 @@ const CREATOR_CARDS = [
     name: "FOX",
     tag: "Media",
     gradient: "from-ember/50 via-ground to-deeper",
+  },
+  {
+    logo: "/partners/tawf.png",
+    logoW: 2574,
+    logoH: 1379,
+    name: "Team Arm Wrestling Federation",
+    tag: "Sports",
+    gradient: "from-navy/60 via-ground to-deeper",
   },
 ];
 

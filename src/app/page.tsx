@@ -859,7 +859,7 @@ function SolutionSection() {
 
       <div className="mx-auto max-w-[1440px] px-6 md:px-12">
         <motion.div
-          className="grid md:grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-16 md:mt-20"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -867,27 +867,40 @@ function SolutionSection() {
         >
           <div>
             <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-fire mb-3">
-              Finance podcast
+              Athlete
             </p>
             <Image
-              src="/topfan/bonded-wealth.png"
-              alt="Bonded Wealth on TopFan"
-              width={1070}
-              height={637}
-              sizes="(max-width: 768px) 90vw, 45vw"
+              src="/topfan/athlete.png"
+              alt="Athlete platform on TopFan"
+              width={2688}
+              height={1600}
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
               className="w-full h-auto"
             />
           </div>
           <div>
             <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-fire mb-3">
-              Wellness coach
+              Sports team
             </p>
             <Image
-              src="/topfan/sienna-brooks.png"
-              alt="Sienna Brooks on TopFan"
-              width={1070}
-              height={637}
-              sizes="(max-width: 768px) 90vw, 45vw"
+              src="/topfan/sports-team.png"
+              alt="Sports team platform on TopFan"
+              width={2688}
+              height={1600}
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+              className="w-full h-auto"
+            />
+          </div>
+          <div>
+            <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-fire mb-3">
+              Music
+            </p>
+            <Image
+              src="/topfan/music.png"
+              alt="Music artist platform on TopFan"
+              width={2688}
+              height={1600}
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
               className="w-full h-auto"
             />
           </div>
@@ -900,8 +913,8 @@ function SolutionSection() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.85, ease: EASE }}
         >
-          One platform. Every vertical.{" "}
-          <span className="text-fire">Talent owns it all.</span>
+          Athletes. Sports teams. Musicians.{" "}
+          <span className="text-fire">One platform. Talent owns it all.</span>
         </motion.p>
       </div>
     </section>

@@ -1076,7 +1076,7 @@ const TEAM_MEMBERS = [
     name: "Craig Conley",
     role: "President of Sports",
     credentials: "UFC · NHL · NFL · NBA · NASCAR · Niner Sports",
-    bio: "Founder, Niner Sports. Produced every live televised UFC event for 24 years. Manages elite roster across NHL, NFL, NBA, NASCAR & UFC.",
+    bio: "Founder, Niner Sports. UFC octagon producer for over 26 years. Produced every live televised UFC event for 24 years. Manages elite roster across NHL, NFL, NBA, NASCAR & UFC.",
   },
   {
     name: "Stephen Tapp",
@@ -1094,7 +1094,7 @@ const TEAM_MEMBERS = [
     name: "Andy Barroway",
     role: "Senior Advisor, Sports Business",
     credentials: "NHL · Arizona Coyotes",
-    bio: "Distinguished hedge fund magnate. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment and strategic deployment.",
+    bio: "Distinguished hedge fund manager. Former owner of the Arizona Coyotes (NHL). Proven track record in sports investment and strategic deployment.",
   },
   {
     name: "Jeffrey Kohn",

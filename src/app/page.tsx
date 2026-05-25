@@ -354,7 +354,7 @@ function PartnerMarquee() {
         </motion.div>
       </div>
 
-      <div className="marquee-shell" aria-label="Topfan clients">
+      <div className="marquee-shell" aria-label="TopFan clients">
         <div className="marquee-track">
           {loop.map((partner, i) => (
             <span key={`${partner.name}-${i}`} className="marquee-item">
@@ -871,7 +871,7 @@ function SolutionSection() {
             </p>
             <Image
               src="/topfan/bonded-wealth.png"
-              alt="Bonded Wealth on Topfan"
+              alt="Bonded Wealth on TopFan"
               width={1070}
               height={637}
               sizes="(max-width: 768px) 90vw, 45vw"
@@ -884,7 +884,7 @@ function SolutionSection() {
             </p>
             <Image
               src="/topfan/sienna-brooks.png"
-              alt="Sienna Brooks on Topfan"
+              alt="Sienna Brooks on TopFan"
               width={1070}
               height={637}
               sizes="(max-width: 768px) 90vw, 45vw"
@@ -911,7 +911,7 @@ function SolutionSection() {
 const ENGINE_SERVICES = [
   {
     title: "Onboarding & migration",
-    body: "Move creators off legacy platforms onto their own ecosystem. Set up the Topfan stack, port the data, brand the surface, ship it live.",
+    body: "Move creators off legacy platforms onto their own ecosystem. Set up the TopFan stack, port the data, brand the surface, ship it live.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="8" height="18" rx="1.5"/>
@@ -996,7 +996,7 @@ function EngineSection() {
             The engine
           </p>
           <h2 className="font-display font-extrabold text-[clamp(2.25rem,6vw,5.5rem)] leading-[0.95] tracking-[-0.025em] text-cream mb-6">
-            Topfan ships the tech.{" "}
+            TopFan ships the tech.{" "}
             <span className="text-fire">H30 ships everything else.</span>
           </h2>
           <p className="text-base md:text-lg text-cream/75 leading-relaxed max-w-2xl">
@@ -1085,9 +1085,9 @@ const TEAM_MEMBERS = [
   },
   {
     name: "Jeffrey Kohn",
-    role: "Founder, Topfan",
-    credentials: "Topfan · NASA · Oracle · Sun Microsystems · RH Donnelley",
-    bio: "Founded Topfan in 2015 after two decades at NASA Mission Control, Sun Microsystems, and Oracle as a Distinguished Enterprise Architect. Built the Direct-to-Fan and Fan Relationship Management technology now powering H30's creators.",
+    role: "Founder, TopFan",
+    credentials: "TopFan · NASA · Oracle · Sun Microsystems · RH Donnelley",
+    bio: "Founded TopFan in 2015 after two decades at NASA Mission Control, Sun Microsystems, and Oracle as a Distinguished Enterprise Architect. Built the Direct-to-Fan and Fan Relationship Management technology now powering H30's creators.",
   },
 ];
 
